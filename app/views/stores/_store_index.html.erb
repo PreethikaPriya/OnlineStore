@@ -1,0 +1,22 @@
+<style type="text/css">
+  .store_list {
+    width: 300px;
+    border: 15px solid grey;
+    padding: 15px;
+    margin: 15px;
+}
+</style>
+
+<div class = "row">
+search here!
+</div>
+
+<% @stores = Store.all %>
+<% @stores.each do |store|%>
+	<div class="col-md-3 store_list">   
+	    <h2><%= store.name %></h2> <br>
+	    Ph:<%= store.ph_num %> <br> 
+	    Website:<%= store.website %> <br>
+	    Cuisine:<%= store.tags %> <br>
+    </div>
+<% end %>
