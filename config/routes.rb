@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
-  resources :roles
+ 
   devise_for :users
   root 'stores#index'
 
-    resources :stores
+  
+  resources :roles
+  resources :stores do
+    collection do
+      get 'store_index'
+    end
+  end
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

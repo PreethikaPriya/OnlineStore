@@ -4,35 +4,40 @@
 } );
 </script>
 
-<h1>Listing Stores</h1>
-<table class = "table table-stripped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Ph num</th>
-      <th>Website</th>
-      <th>Tags</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
+<% if user_signed_in? %>
+<% if can? :create, Store %>
 
-  <tbody>
-    <% @stores.each do |store| %>
+<%= render "stores/admin_search_form" %>
+
+  <h1>Listing Stores</h1>
+  <table class = "table table-stripped">
+    <thead>
       <tr>
-        <td><%= store.name %></td>
-        <td><%= store.ph_num %></td>
-        <td><%= store.website %></td>
-        <td><%= store.tags %></td>
-        <td><%= link_to 'Show', store %> |
-        <%= link_to 'Edit', edit_store_path(store) %> |
-        <%= link_to 'Destroy', store, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>Ph num</th>
+        <th>Website</th>
+        <th>Tags</th>
+        <th>Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<%= link_to 'New Store', new_store_path %>
-<br>
+    <tbody>
+      <% @stores.each do |store| %>
+        <tr>
+          <td><%= store.name %></td>
+          <td><%= store.ph_num %></td>
+          <td><%= store.website %></td>
+          <td><%= store.tags %></td>
+          <td><%= link_to 'Show', store %> |
+          <%= link_to 'Edit', edit_store_path(store) %> |
+          <%= link_to 'Destroy', store, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-
+  <%= link_to 'New Store', new_store_path %>
+  <br>
+<% end %>
+<% end %>
 

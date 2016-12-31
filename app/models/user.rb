@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
 def is_admin?
-
   	return true if self.role == "admin"
   	#binding.pry
 end

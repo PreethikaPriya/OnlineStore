@@ -1,11 +1,23 @@
 class StoresController < ApplicationController
   before_action :set_store, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user! , only: [:show, :edit]
   # GET /stores
   # GET /stores.json
   def index
-    @stores = Store.all
+    if params[:search]
+      @stores = Store.search_result(params[:search])
+    else
+      @stores = Store.all  
+    end  
   end
+
+  def store_index 
+    if params[:search]
+      @stores = Store.search_result(params[:search]) 
+    else
+      @stores = Store.all  
+    end       
+  end  
 
   # GET /stores/1
   # GET /stores/1.json
