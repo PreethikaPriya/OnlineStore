@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
  
+  resources :regions
   devise_for :users
-  root 'stores#index'
+  root 'stores#store_index'
 
   
   resources :roles

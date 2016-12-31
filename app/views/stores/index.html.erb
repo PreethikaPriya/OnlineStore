@@ -4,6 +4,16 @@
 } );
 </script>
 
+<script type="text/javascript">
+  $('document').ready(function() {
+  setTimeout(function() {
+    $('.notice').slideUp();
+  }, 3000);
+});  
+</script>
+
+<!-- flash works here -->
+
 <% if user_signed_in? %>
 <% if can? :create, Store %>
 
@@ -17,6 +27,7 @@
         <th>Ph num</th>
         <th>Website</th>
         <th>Tags</th>
+        <th>Region </th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -28,6 +39,7 @@
           <td><%= store.ph_num %></td>
           <td><%= store.website %></td>
           <td><%= store.tags %></td>
+          <td><%= Region.find(store.region_id).region%></td>
           <td><%= link_to 'Show', store %> |
           <%= link_to 'Edit', edit_store_path(store) %> |
           <%= link_to 'Destroy', store, method: :delete, data: { confirm: 'Are you sure?' } %></td>

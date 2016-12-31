@@ -1,13 +1,22 @@
 class StoresController < ApplicationController
   before_action :set_store, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user! , only: [:show, :edit]
+
+  #before_filter :authenticate_user!
+
+  #before_action :authenticate_user! , only: [:show, :edit]
+  load_and_authorize_resource only: [:show, :edit, :update, :create, :destroy, :new]
   # GET /stores
   # GET /stores.json
   def index
     if params[:search]
       @stores = Store.search_result(params[:search])
+    else    
+      @stores = Store.all 
+    end  
+    if @stores.empty?
+      flash[:notice] = "Sorry! There are no stores in this region"
     else
-      @stores = Store.all  
+      flash[:notice] = "Your results"    
     end  
   end
 
@@ -16,7 +25,13 @@ class StoresController < ApplicationController
       @stores = Store.search_result(params[:search]) 
     else
       @stores = Store.all  
-    end       
+    end 
+    # binding.pry 
+    if @stores.empty?
+      flash[:notice] = "Sorry! There are no stores in this region"
+    else
+      flash[:notice] = "Your results"  
+    end      
   end  
 
   # GET /stores/1
@@ -81,6 +96,6 @@ class StoresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def store_params
-      params.require(:store).permit(:name, :ph_num, :website, :tags)
+      params.require(:store).permit(:name, :ph_num, :website, :tags ,:region_id)
     end
 end

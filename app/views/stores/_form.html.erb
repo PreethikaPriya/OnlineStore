@@ -23,6 +23,10 @@
     <%= f.label :website %><br>
     <%= f.text_field :website %>
   </div>
+   <div class="field">
+    <%= f.label :region %><br>
+    <%= f.collection_select :region_id, Region.all, :id, :region, {prompt:"select region"}%>
+  </div>
   <div class="field">
     <%= f.label :tags %><br>
     <%= f.text_field :tags %>

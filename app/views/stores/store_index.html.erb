@@ -1,3 +1,14 @@
+<script type="text/javascript">
+$('document').ready(function() {
+  setTimeout(function() {
+    $('.notice').slideUp();
+  }, 3000);
+  $("#search-form").click(function(){
+    $("#page_index").hide();
+  });
+});  
+</script>
+
 <style type="text/css">
   .store_list {
     width: 300px;
@@ -13,12 +24,12 @@
 <% end %>
 </div>
 
-<%# @stores = Store.all %>
 <% @stores.each do |store|%>
 	<div class="col-md-3 store_list">   
 	    <h2><%= store.name %></h2> <br>
 	    Ph:<%= store.ph_num %> <br> 
 	    Website:<%= store.website %> <br>
 	    Cuisine:<%= store.tags %> <br>
+      Region: <%= Region.find(store.region_id).region %>
     </div>
 <% end %>
