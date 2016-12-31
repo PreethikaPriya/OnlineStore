@@ -4,7 +4,7 @@ class StoresController < ApplicationController
   #before_filter :authenticate_user!
 
   #before_action :authenticate_user! , only: [:show, :edit]
-  load_and_authorize_resource only: [:show, :edit, :update, :create, :destroy, :new]
+  load_and_authorize_resource except: [:store_index, :index]
   # GET /stores
   # GET /stores.json
   def index
