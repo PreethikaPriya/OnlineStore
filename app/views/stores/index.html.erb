@@ -20,6 +20,7 @@
 <%= render "stores/admin_search_form" %>
 
   <h1>Listing Stores</h1>
+  <div id="storeIndex">
   <table class = "table table-stripped">
     <thead>
       <tr>
@@ -49,7 +50,7 @@
       <% end %>
     </tbody>
   </table>
-
+  </div>
   <%= link_to 'New Store', new_store_path %>
   <br>
 <% end %>

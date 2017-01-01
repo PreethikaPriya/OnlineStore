@@ -1,5 +1,13 @@
-<%= form_tag(store_index_stores_path, :method => "get", id: "search-form") do %>
-	<%= text_field_tag :search, params[:search], placeholder: "Search regions" %>
-	<%= submit_tag "Search" %>
-<% end %>
-
+<div class="row">
+	<div class="col-md-12">
+		<div class="col-md-4">
+			<%= form_tag(store_index_stores_path, :method => "get", id: "search-form") do %>
+				<%= text_field_tag :search, params[:search], placeholder: "Search here!" %>
+				<%= submit_tag "Search" ,class: 'btn btn-success btn-sm'%>
+			<% end %>
+		</div>
+		<div class ="col=md-8">
+			<%= link_to "Browse All", root_path, class: 'btn btn-default btn-sm'%>	
+		</div>
+	</div>
+</div>

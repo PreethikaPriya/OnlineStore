@@ -1,17 +1,21 @@
 Rails.application.routes.draw do
  
-  resources :zipcodes
+  
   resources :regions
   devise_for :users
   root 'stores#store_index'
 
-  
   resources :roles
   resources :stores do
     collection do
       get 'store_index'
     end
   end
+  resources :zipcodes do
+    collection do
+      get 'get_region_zipcodes'
+    end
+  end  
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

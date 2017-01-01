@@ -1,5 +1,5 @@
 class Store < ActiveRecord::Base
-validates_presence_of  :name, :ph_num, :tags, :region_id
+validates_presence_of  :name, :ph_num, :tags, :region_id, :zipcode_id
 validates :ph_num,:presence => true,
              :numericality => true,
              :length => { :minimum => 10, :maximum => 15}

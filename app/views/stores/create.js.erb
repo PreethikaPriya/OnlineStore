@@ -1,0 +1,12 @@
+<%if @store.errors.present?%>
+  $("#store_error").html("<%= escape_javascript(render 'errors') %>");
+  dismiss_error_message();
+<%else%>
+  $("#new_store").trigger("reset");
+  $("#store_form").hide();
+  $("#after_form_Index").empty();
+  $("#after_form_Index").html("<%= escape_javascript(render 'stores/tables') %>");
+  showMessage("Store Succesfully Created" , "success");
+<%end%>
+
+ 

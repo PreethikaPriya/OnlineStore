@@ -17,13 +17,6 @@ $('document').ready(function() {
     margin: 15px;
 }
 </style>
-
-<div class = "row">
-<% if user_signed_in? %>
-    search here! <%= current_user.email %>
-<% end %>
-</div>
-
 <% @stores.each do |store|%>
 	<div class="col-md-3 store_list">   
 	    <h2><%= store.name %></h2> <br>

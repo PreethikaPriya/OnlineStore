@@ -1,16 +1,28 @@
-<%= form_for(@store) do |f| %>
-  <% if @store.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@store.errors.count, "error") %> prohibited this store from being saved:</h2>
+<script type="text/javascript">
+  $(document).ready(function(){
+     $('#store_region_id').change(function(){
+      var regiondata = {region_id : $('#store_region_id').val() };
+      $.ajax({
+        method: 'GET',
+        url: '/zipcodes/get_region_zipcodes',
+        data: regiondata,
+        dataType: 'json',
+        statusCode: {
+        }
+      }).done(function(res){
+        $('#store_zipcode_id').html('<option value="0">Select Zipcode</option>');
+        $.each(res,function(index,value){
+          $('#store_zipcode_id').append('<option value="'+value.id+'">'+value.zipcode+'</option>');
+        });
+      }).fail(function(res){
+        alert("request failed");
+      });
+    });     
+  });
+</script>
 
-      <ul>
-      <% @store.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<div id="store_form">
+<%= form_for @store , remote: true do |f| %>
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
@@ -39,3 +51,5 @@
     <%= f.submit %>
   </div>
 <% end %>
+</div>
+<div id="after_form_Index"></div>

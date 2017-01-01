@@ -21,6 +21,15 @@ class ZipcodesController < ApplicationController
   def edit
   end
 
+  def get_region_zipcodes
+    @region_id = params[:region_id]
+    #binding.pry
+    @zipcodes = Zipcode.where('region_id=?', @region_id)    
+    respond_to do |format|  
+      format.json {render json: @zipcodes}
+    end
+  end  
+
   # POST /zipcodes
   # POST /zipcodes.json
   def create

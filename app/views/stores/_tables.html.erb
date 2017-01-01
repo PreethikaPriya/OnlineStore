@@ -1,0 +1,29 @@
+<table class = "table table-stripped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Ph num</th>
+      <th>Website</th>
+      <th>Tags</th>
+      <th>Region</th>
+      <th>Zipcode</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stores = Store.all %>
+    <% @stores.each do |store| %>
+      <tr>
+        <td><%= store.name %></td>
+        <td><%= store.ph_num %></td>
+        <td><%= store.website %></td>
+        <td><%= store.tags %></td>
+        <td><%= store.region.region%></td>
+        <td><%= store.zipcode.zipcode %>
+        <td><%= link_to 'Show', store %> |
+        <%= link_to 'Edit', edit_store_path(store) %> |
+        <%= link_to 'Destroy', store, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>

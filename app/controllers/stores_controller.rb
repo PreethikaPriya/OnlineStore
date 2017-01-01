@@ -13,10 +13,11 @@ class StoresController < ApplicationController
     else    
       @stores = Store.all 
     end  
-    if @stores.empty?
+
+    if (params[:search].present? && @stores.empty? )
       flash[:notice] = "Sorry! There are no stores in this region"
-    else
-      flash[:notice] = "Your results"    
+    elsif (params[:search].present? && !@stores.empty?)
+      flash[:notice] = "Search results"       
     end  
   end
 
@@ -27,11 +28,19 @@ class StoresController < ApplicationController
       @stores = Store.all  
     end 
 
-    if @stores.empty?
+    if (params[:search].present? && @stores.empty? )
       flash[:notice] = "Sorry! There are no stores in this region"
-    else
-      flash[:notice] = "Your results"  
-    end      
+    elsif (params[:search].present? && !@stores.empty?)
+      flash[:notice] = "Search results"  
+    end 
+
+    respond_to do |format|
+      if !@stores.empty?
+        format.html
+      else
+        format.html { redirect_to root_path }  
+      end
+    end   
   end  
 
   # GET /stores/1
@@ -52,14 +61,15 @@ class StoresController < ApplicationController
   # POST /stores.json
   def create
     @store = Store.new(store_params)
-
     respond_to do |format|
       if @store.save
         format.html { redirect_to stores_path, notice: 'Store was successfully created.' }
         format.json { render :show, status: :created, location: @store }
+        format.js{}
       else
         format.html { render :new }
         format.json { render json: @store.errors, status: :unprocessable_entity }
+        format.js{}
       end
     end
   end

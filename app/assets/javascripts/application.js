@@ -15,3 +15,8 @@
 //= require turbolinks
 //= require_tree .
 
+function dismiss_error_message() {
+  setTimeout(
+      $('.alert-danger').delay(2000).fadeOut(5000)
+  )
+}
