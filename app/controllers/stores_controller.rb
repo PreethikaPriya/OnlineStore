@@ -51,6 +51,7 @@ class StoresController < ApplicationController
   # GET /stores/new
   def new
     @store = Store.new
+    1.times { @store.addresses.build}
   end
 
   # GET /stores/1/edit
@@ -106,6 +107,6 @@ class StoresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def store_params
-      params.require(:store).permit(:name, :ph_num, :website, :tags ,:region_id, :zipcode_id)
+      params.require(:store).permit(:name, :ph_num, :website, :tags ,:region_id, :zipcode_id, :address_id, addresses_attributes: [:id, :street1, :street2, :region_id, :region_id, :store_id,:_destroy])
     end
 end

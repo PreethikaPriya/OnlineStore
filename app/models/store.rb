@@ -1,4 +1,6 @@
 class Store < ActiveRecord::Base
+#attr_accessible :addresses_attributes
+
 validates_presence_of  :name, :ph_num, :tags, :region_id, :zipcode_id
 validates :ph_num,:presence => true,
              :numericality => true,
@@ -13,6 +15,8 @@ validates_uniqueness_of :ph_num
 
 belongs_to :zipcode
 belongs_to :region
+has_many :addresses
+accepts_nested_attributes_for :addresses , allow_destroy: true , reject_if: lambda {|attributes| attributes['kind'].blank?}
 
 def self.search_result(region)
 	# binding.pry

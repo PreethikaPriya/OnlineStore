@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170101062155) do
+ActiveRecord::Schema.define(version: 20170101132857) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.string   "street1"
+    t.string   "street2"
+    t.integer  "region_id"
+    t.integer  "zipcode_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "store_id"
+  end
 
   create_table "region_stores", force: :cascade do |t|
     t.integer  "region_id"
@@ -48,6 +58,7 @@ ActiveRecord::Schema.define(version: 20170101062155) do
     t.datetime "updated_at", null: false
     t.integer  "region_id"
     t.integer  "zipcode_id"
+    t.integer  "address_id"
   end
 
   create_table "users", force: :cascade do |t|

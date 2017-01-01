@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
  
   
+  resources :addresses
   resources :regions
   devise_for :users
   root 'stores#store_index'

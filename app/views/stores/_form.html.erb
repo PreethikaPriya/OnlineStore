@@ -35,12 +35,19 @@
     <%= f.label :website %><br>
     <%= f.text_field :website %>
   </div>
+
+  Addresses:
+
+  <%= f.fields_for :addresses do |builder| %>
+    <%= render "address_fields", :f => builder %>
+  <% end %>
+
   <div class="field">
     <%= f.label :region %><br>
     <%= f.collection_select :region_id, Region.all, :id, :region, {prompt:"select region"}%>
   </div>
   <div class="field">
-    <%= f.label :region %><br>
+    <%= f.label :zipcode %><br>
     <%= f.collection_select :zipcode_id, Zipcode.all, :id, :zipcode, {prompt:"select Zipcode"}%>
   </div>
   <div class="field">
