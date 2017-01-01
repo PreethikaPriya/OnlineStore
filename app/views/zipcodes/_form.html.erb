@@ -1,0 +1,25 @@
+<%= form_for(@zipcode) do |f| %>
+  <% if @zipcode.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@zipcode.errors.count, "error") %> prohibited this zipcode from being saved:</h2>
+
+      <ul>
+      <% @zipcode.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :zipcode %><br>
+    <%= f.text_field :zipcode %>
+  </div>
+  <div class="field">
+    <%= f.label :region_id %><br>
+    <%= f.collection_select :region_id, Region.all, :id, :region ,{prompt:"select region"} %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

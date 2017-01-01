@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
  
+  resources :zipcodes
   resources :regions
   devise_for :users
   root 'stores#store_index'

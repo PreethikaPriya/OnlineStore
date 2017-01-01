@@ -1,0 +1,33 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+    $('#zipcode_index').DataTable();
+} );
+</script>
+
+<h1>Listing Zipcodes</h1>
+
+<table class = "table table-stripped" id="zipcode_index">
+  <thead>
+    <tr>
+      <th>Zipcode</th>
+      <th>Region</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @zipcodes.each do |zipcode| %>
+      <tr>
+        <td><%= zipcode.zipcode %></td>
+        <td><%= zipcode.region.region %></td>
+        <td><%= link_to 'Show', zipcode %> |
+        <%= link_to 'Edit', edit_zipcode_path(zipcode) %> |
+        <%= link_to 'Destroy', zipcode, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Zipcode', new_zipcode_path %>
