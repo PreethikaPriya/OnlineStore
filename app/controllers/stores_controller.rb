@@ -26,7 +26,7 @@ class StoresController < ApplicationController
     else
       @stores = Store.all  
     end 
-    # binding.pry 
+
     if @stores.empty?
       flash[:notice] = "Sorry! There are no stores in this region"
     else
