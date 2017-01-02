@@ -27,6 +27,7 @@ gem 'devise'
 gem 'pry-rails', :group => :development
 gem "cancan"
 gem "nested_form"
+gem 'acts-as-taggable-on', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

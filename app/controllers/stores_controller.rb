@@ -52,6 +52,8 @@ class StoresController < ApplicationController
   def new
     @store = Store.new
     1.times { @store.addresses.build}
+    #@store.tag_list.add("awesome")
+
   end
 
   # GET /stores/1/edit
