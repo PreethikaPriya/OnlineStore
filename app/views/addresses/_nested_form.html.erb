@@ -1,0 +1,57 @@
+<!-- <script type="text/javascript">
+  $(document).ready(function(){
+     $('.add_region').change(function(){
+      var regiondata = {region_id : $('.add_region').val() };
+      $.ajax({
+        method: 'GET',
+        url: '/zipcodes/get_region_zipcodes',
+        data: regiondata,
+        dataType: 'json',
+        statusCode: {
+        }
+      }).done(function(res){
+        $('.add_zipcode').html('<option value="0">Select Zipcode</option>');
+        $.each(res,function(index,value){
+          $('.add_zipcode').append('<option value="'+value.id+'">'+value.zipcode+'</option>');
+        });
+      }).fail(function(res){
+        alert("request failed");
+      });
+    });     
+  });
+</script> -->
+
+<%= nested_form_for @store do |f| %>
+<%= f.fields_for :addresses do |addresses_form| %>
+  <li>
+
+    <div class="field">
+    <%= addresses_form.label :street1 %> 
+    <%= addresses_form.text_field :street1 %> <br>
+    </div>
+
+    <div class="field">
+    <%= addresses_form.label :street2 %> 
+    <%= addresses_form.text_field :street2 %> <br>
+    </div>
+
+    <!-- <div class="field add_region">
+    <%= addresses_form.label :region %> 
+    <%= addresses_form.collection_select :region_id, Region.all, :id, :region, {prompt:"select region"} %>  <br>
+    </div>
+
+    <div class="field add_zipcode">
+    <%= addresses_form.label :zipcode %> 
+    <%= addresses_form.collection_select :zipcode_id, Zipcode.all, :id, :zipcode, {prompt:"select Zipcode"} %> <br>
+    </div> -->
+  
+   <%= addresses_form.link_to_remove "Remove this address"%>  
+  </li>
+  <br>
+<% end %>
+
+<p><%=  f.link_to_add "Add address", :addresses %></p>
+
+<% end %>
+
+

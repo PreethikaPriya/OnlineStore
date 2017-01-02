@@ -11,7 +11,7 @@ class StoresController < ApplicationController
     if params[:search]
       @stores = Store.search_result(params[:search])
     else    
-      @stores = Store.all 
+      @stores = Store.all.order(:region_id)
     end  
 
     if (params[:search].present? && @stores.empty? )
@@ -25,7 +25,7 @@ class StoresController < ApplicationController
     if params[:search]
       @stores = Store.search_result(params[:search]) 
     else
-      @stores = Store.all  
+      @stores = Store.all.order(:region_id)
     end 
 
     if (params[:search].present? && @stores.empty? )
@@ -34,13 +34,13 @@ class StoresController < ApplicationController
       flash[:notice] = "Search results"  
     end 
 
-    respond_to do |format|
-      if !@stores.empty?
-        format.html
-      else
-        format.html { redirect_to root_path }  
-      end
-    end   
+    # respond_to do |format|
+    #   if !@stores.empty?
+    #     format.html
+    #   else
+    #     format.html { redirect_to root_path }  
+    #   end
+    # end   
   end  
 
   # GET /stores/1
@@ -63,6 +63,7 @@ class StoresController < ApplicationController
   def create
     @store = Store.new(store_params)
     respond_to do |format|
+     # binding.pry
       if @store.save
         format.html { redirect_to stores_path, notice: 'Store was successfully created.' }
         format.json { render :show, status: :created, location: @store }
@@ -107,6 +108,6 @@ class StoresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def store_params
-      params.require(:store).permit(:name, :ph_num, :website, :tags ,:region_id, :zipcode_id, :address_id, addresses_attributes: [:id, :street1, :street2, :region_id, :region_id, :store_id,:_destroy])
+      params.require(:store).permit(:name, :ph_num, :website, :tags ,:region_id, :zipcode_id, :address_id, addresses_attributes: [:id, :street1, :street2, :region_id, :zipcode_id,:_destroy])
     end
 end

@@ -1,26 +1,25 @@
-<style type="text/css">
+<!-- <style type="text/css">
   .store_list {
     width: 300px;
     border: 15px solid grey;
     padding: 15px;
     margin: 15px;
 }
-</style>
+</style> -->
 
-<div class = "row">
-<% if user_signed_in? %>
-    search here! <%= current_user.email %>
-<% end %>
-</div>
-
-<% @stores = Store.all %>
 <% @stores.each do |store|%>
-	<div class="col-md-3 store_list">   
-	    <h2><%= store.name %></h2> <br>
-	    Ph:<%= store.ph_num %> <br> 
-	    Website:<%= store.website %> <br>
-	    Cuisine:<%= store.tags %> <br>
-      Region: <%= store.region.region %>
-      Zipcode: <%= store.zipcode.zipcode %>
+  <div class="col-md-3 store_list">   
+      <h2><%= store.name %></h2> <br>
+      <% i = 0%>
+      <% store.addresses.each do |address| %>
+      Address: <%= i += 1 %><br> 
+        <%= address.street1 %> <br>
+        <%= address.street2 %> <br>
+      <% end %>
+      Region: <%= store.region.region %> <br>
+      Zipcode: <%= store.zipcode.zipcode %> <br>
+      Ph:<%= store.ph_num %> <br> 
+      Website:<%= store.website %> <br>
+      Cuisine:<%= store.tags %> <br>
     </div>
 <% end %>

@@ -5,6 +5,7 @@
       <th>Ph num</th>
       <th>Website</th>
       <th>Tags</th>
+      <th>Address</th>
       <th>Region</th>
       <th>Zipcode</th>
       <th>Actions</th>
@@ -18,6 +19,14 @@
         <td><%= store.ph_num %></td>
         <td><%= store.website %></td>
         <td><%= store.tags %></td>
+        <td>
+          <% i = 0%>
+          <% store.addresses.each do |address| %>
+          Address: <%= i += 1 %><br> 
+            <%= address.street1 %> <br>
+            <%= address.street2 %> <br>  
+          <% end %>
+          </td>    
         <td><%= store.region.region%></td>
         <td><%= store.zipcode.zipcode %>
         <td><%= link_to 'Show', store %> |

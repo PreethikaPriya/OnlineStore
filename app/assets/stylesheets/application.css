@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+<style type="text/css">
+  .store_list {
+    width: 300px;
+    border: 15px solid grey;
+    padding: 15px;
+    margin: 15px;
+}
+</style>
