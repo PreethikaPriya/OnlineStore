@@ -91,6 +91,7 @@ GEM
     nokogiri (1.7.0)
       mini_portile2 (~> 2.1.0)
     orm_adapter (0.5.0)
+    pg (0.18.4)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -180,6 +181,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   nested_form
+  pg
   pry-rails
   rails (= 4.2.6)
   sass-rails (~> 5.0)
