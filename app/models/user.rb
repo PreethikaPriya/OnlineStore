@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
 
 def is_admin?
   	return true if self.role == "admin"
-  	#binding.pry
 end
 
 end

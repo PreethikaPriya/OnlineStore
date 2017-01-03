@@ -1,11 +1,12 @@
-<!-- <style type="text/css">
-  .store_list {
-    width: 300px;
-    border: 15px solid grey;
-    padding: 15px;
-    margin: 15px;
-}
-</style> -->
+<div id="tag_cloud">
+  <% tag_cloud Store.tag_counts, %w[s m l] do |tag, css_class| %>
+    <%= link_to tag.name, tag_path(tag.name) , class:css_class %>
+  <% end %>
+</div>
+
+<%# if @stores.count > 0 %>
+ <!--  <h3 style="margin:15px"> Found <%#= @stores.count %> matching results! </h3> -->
+<%# end %>
 
 <% @stores.each do |store|%>
   <div class="col-md-3 store_list">   

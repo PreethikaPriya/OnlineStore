@@ -13,13 +13,13 @@
 
   <div class="field">
     <%= f.label :zipcode %><br>
-    <%= f.text_field :zipcode %>
+    <%= f.text_field :zipcode  %>
   </div>
   <div class="field">
     <%= f.label :region_id %><br>
     <%= f.collection_select :region_id, Region.all, :id, :region ,{prompt:"select region"} %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-success"%>
   </div>
 <% end %>

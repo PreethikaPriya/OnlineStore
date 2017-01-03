@@ -24,6 +24,9 @@ $('document').ready(function() {
   <% end %>
 </div>
 
+<%# if @stores.count > 0 %>
+ <!--  <h3 style="margin:15px"> Found <%#= @stores.count %> matching results! </h3> -->
+<%# end %>
 
 <% @stores.each do |store|%>
 	<div class="col-md-3 store_list" align="center">   

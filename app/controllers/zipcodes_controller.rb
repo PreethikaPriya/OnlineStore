@@ -24,7 +24,6 @@ class ZipcodesController < ApplicationController
 
   def get_region_zipcodes
     @region_id = params[:region_id]
-    #binding.pry
     @zipcodes = Zipcode.where('region_id=?', @region_id)    
     respond_to do |format|  
       format.json {render json: @zipcodes}
@@ -38,7 +37,7 @@ class ZipcodesController < ApplicationController
 
     respond_to do |format|
       if @zipcode.save
-        format.html { redirect_to @zipcode, notice: 'Zipcode was successfully created.' }
+        format.html { redirect_to zipcodes_path, notice: 'Zipcode was successfully created.' }
         format.json { render :show, status: :created, location: @zipcode }
       else
         format.html { render :new }
@@ -52,7 +51,7 @@ class ZipcodesController < ApplicationController
   def update
     respond_to do |format|
       if @zipcode.update(zipcode_params)
-        format.html { redirect_to @zipcode, notice: 'Zipcode was successfully updated.' }
+        format.html { redirect_to zipcodes_path, notice: 'Zipcode was successfully updated.' }
         format.json { render :show, status: :ok, location: @zipcode }
       else
         format.html { render :edit }
