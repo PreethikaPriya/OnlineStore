@@ -10,6 +10,8 @@ class StoresController < ApplicationController
   def index
     if params[:search]
       @stores = Store.search_result(params[:search])
+    elsif params[:tag]
+      @stores = Store.tagged_with(params[:tag])  
     else    
       @stores = Store.all.order(:region_id)
     end  
@@ -24,6 +26,8 @@ class StoresController < ApplicationController
   def store_index 
     if params[:search]
       @stores = Store.search_result(params[:search]) 
+    elsif params[:tag]
+      @stores = Store.tagged_with(params[:tag])          
     else
       @stores = Store.all.order(:region_id)
     end 
@@ -112,6 +116,6 @@ class StoresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def store_params
-      params.require(:store).permit(:name, :ph_num, :website, :tags ,:region_id, :zipcode_id, :address_id, addresses_attributes: [:id, :street1, :street2, :region_id, :zipcode_id,:_destroy])
+      params.require(:store).permit(:name, :ph_num, :website, :tags ,:region_id, :zipcode_id, :address_id, :tag_list, addresses_attributes: [:id, :street1, :street2, :region_id, :zipcode_id,:_destroy])
     end
 end

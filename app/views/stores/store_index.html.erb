@@ -18,6 +18,13 @@ $('document').ready(function() {
 }
 </style>
 
+<div id="tag_cloud">
+  <% tag_cloud Store.tag_counts, %w[s m l] do |tag, css_class| %>
+    <%= link_to tag.name, tag_path(tag.name) , class:css_class %>
+  <% end %>
+</div>
+
+
 <% @stores.each do |store|%>
 	<div class="col-md-3 store_list" align="center">   
 	    <h2><%= store.name %></h2> <br>
@@ -31,6 +38,6 @@ $('document').ready(function() {
       Zipcode: <%= store.zipcode.zipcode %> <br>
 	    Ph:<%= store.ph_num %> <br> 
 	    Website:<%= store.website %> <br>
-	    Cuisine:<%= store.tags %> <br>
+	    Tags:<%= raw store.tag_list.map { |t| link_to t, tag_path(t)}.join(',') %> <br>
     </div>
 <% end %>

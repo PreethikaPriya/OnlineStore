@@ -25,7 +25,7 @@
         <td><%= store.name %></td>
         <td><%= store.ph_num %></td>
         <td><%= store.website %></td>
-        <td><%= store.tags %></td>
+        <td><%= store.tag_list %></td>
         <td>
           <% i = 0%>
           <% store.addresses.each do |address| %>
@@ -43,3 +43,5 @@
     <% end %>
   </tbody>
   </table>
+
+  <%= link_to 'New Store', new_store_path %>

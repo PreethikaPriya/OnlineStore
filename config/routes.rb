@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
  
-  
+  get 'tags/:tag', to: 'stores#store_index', as: :tag 
   resources :addresses
   resources :regions
   devise_for :users
@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     end
   end  
   
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
