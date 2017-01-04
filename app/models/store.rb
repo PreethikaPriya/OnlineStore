@@ -12,6 +12,14 @@ belongs_to :region
 has_many :addresses
 accepts_nested_attributes_for :addresses, allow_destroy: true
 
+validate :check_zipcode
+
+def check_zipcode
+	if (zipcode_id == 0)
+		errors.add(:zipcode_id, "zipcode cant be blank")
+	end		
+end
+
 def self.search_result(region)
 	region = region.downcase.gsub(/\s+/, "")
  # Store.where('name LIKE?', "%#{region}") 
